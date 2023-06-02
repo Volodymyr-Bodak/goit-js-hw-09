@@ -26,7 +26,7 @@ submitButton.addEventListener('click', (event) => {
   let delay = Number(delayInput.value);
 
   for (let i = 0; i < amount; i++) {
-    createPromise(i, delay)
+    createPromise(i +1, delay)
       .then(({ position, delay }) => {
         Notiflix.Notify.success(`✅ Fulfilled promise ${position} in ${delay}ms`);
       })
