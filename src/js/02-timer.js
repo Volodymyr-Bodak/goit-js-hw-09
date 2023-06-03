@@ -8,7 +8,7 @@ const daysElement = document.querySelector("[data-days]");
 const hoursElement = document.querySelector("[data-hours]");
 const minutesElement = document.querySelector("[data-minutes]");
 const secondsElement = document.querySelector("[data-seconds]");
-
+let targetDate;
 startBtn.disabled = true;
 
 function convertMs(ms) {
