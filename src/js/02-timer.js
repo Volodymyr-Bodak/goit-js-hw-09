@@ -12,7 +12,7 @@ const secondsElement = document.querySelector("[data-seconds]");
 startBtn.disabled = true;
 
 function convertMs(ms) {
-  // Number of milliseconds per unit of time
+  
   const second = 1000;
   const minute = second * 60;
   const hour = minute * 60;
@@ -26,7 +26,7 @@ function convertMs(ms) {
   
   const minutes = Math.floor(((ms % day) % hour) / minute);
   minutesElement.textContent = addLeadingZero(minutes);
-  // Remaining seconds
+ 
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   secondsElement.textContent = addLeadingZero(seconds);
 
@@ -48,6 +48,7 @@ const options = {
         Notiflix.Notify.warning("Please choose a date in the future");
       } else{
         startBtn.disabled = false;
+        targetDate = selectedDates[0];
       }
   
       
@@ -59,22 +60,17 @@ const options = {
 
 
 
-  startBtn.addEventListener('click', () => {
-    const selectedDate = flatpickr.parseDate(input.value);
-    const today = new Date();
-  
+  startBtn.addEventListener("click", () => {
     startBtn.disabled = true;
-    let ms = selectedDate - today;
-  
     countdownInterval = setInterval(() => {
-      ms -= 1000;
+      const currentDate = new Date();
+      const ms = targetDate - currentDate;
+      convertMs(ms);
+  
       if (ms <= 0) {
         clearInterval(countdownInterval);
         countdownInterval = null;
-        convertMs(0);
         return;
       }
-      convertMs(ms);
     }, 1000);
-    });
-    
+  });
