@@ -29,7 +29,7 @@ function convertMs(ms) {
  
   const seconds = Math.floor((((ms % day) % hour) % minute) / second);
   secondsElement.textContent = addLeadingZero(seconds);
-
+ 
   return { days, hours, minutes, seconds };
 }
 
@@ -69,7 +69,10 @@ const options = {
   
       if (ms <= 0) {
         clearInterval(countdownInterval);
-        countdownInterval = null;
+        daysElement.textContent = "00";
+        hoursElement.textContent = "00";
+        minutesElement.textContent = "00";
+        secondsElement.textContent = "00";
         return;
       }
     }, 1000);
